@@ -34,6 +34,4 @@ class LambdaSpec extends AnyFlatSpec with MockitoSugar {
     val lde = LambdaDestinationEvent.builder().withRequestPayload(event).build()
     lambda.handleRequest(lde, mockContext)
   }
-
-
 }
