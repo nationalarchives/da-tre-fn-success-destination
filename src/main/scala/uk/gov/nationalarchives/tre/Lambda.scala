@@ -14,7 +14,7 @@ class Lambda() extends RequestHandler[LambdaDestinationEvent, Unit] {
   override def handleRequest(event: LambdaDestinationEvent, context: Context): Unit = {
     val logger = context.getLogger //TODO: figure out logging...
     logger.log(s"TOPIC: ${topicOption.get}")
-    val payload: util.Map[String, AnyRef] = event.getRequestPayload
+    val payload= event.getResponsePayload
     logger.log(s"EVENT PAYLOAD: $payload\n")
     val msg = payload.toString
     logger.log(s"MSG: $msg\n")
