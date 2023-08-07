@@ -1,5 +1,5 @@
 # Introduction
-This repository is for a tre lambda that acts as the success destination of other tre lambdas
+This repository is for a tre lambda that acts as the success destination of other tre lambdas. It publishes the message from the upstream lambda to TRE's internal SNS topic.
 
 ### Deployment
 

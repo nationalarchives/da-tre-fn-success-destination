@@ -12,16 +12,20 @@ class Lambda() extends RequestHandler[LambdaDestinationEvent, Unit] {
   private lazy val topicOption = sys.env.get("TRE_INTERNAL_TOPIC_ARN")
 
   override def handleRequest(event: LambdaDestinationEvent, context: Context): Unit = {
-    val logger = context.getLogger //TODO: figure out logging...
-    logger.log(s"TOPIC: ${topicOption.get}")
-    val payload= event.getResponsePayload
-    logger.log(s"EVENT PAYLOAD: $payload\n")
-    val msg = payload.toString
-    logger.log(s"MSG: $msg\n")
-    val snsClient = SnsClient.builder().region(region).build()
-    val topic = topicOption.get // TODO: error handling this and in general...
-    val request = PublishRequest.builder.message(msg).topicArn(topic).build
-    snsClient.publish(request)
+    val logger = context.getLogger
+    logger.log(s"Received event at success destination\n")
+    val message = event.getResponsePayload.toString
+
+    topicOption match {
+      case Some(internalPublishingTopic) =>
+        context.getLogger.log(s"Publishing message to internal publishing topic: $message")
+        val snsClient = SnsClient.builder().region(region).build()
+        val request =
+          PublishRequest.builder.message(message).topicArn(internalPublishingTopic).build
+        snsClient.publish(request)
+      case None =>
+        context.getLogger.log("No internal publishing topic set")
+    }
   }
 
 }
