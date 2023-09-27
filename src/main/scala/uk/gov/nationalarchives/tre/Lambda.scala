@@ -9,7 +9,7 @@ import java.util
 class Lambda() extends RequestHandler[LambdaDestinationEvent, Unit] {
 
   private lazy val region = Region.EU_WEST_2
-  private lazy val topicOption = sys.env.get("TRE_INTERNAL_TOPIC_ARN")
+  private lazy val topicOption = sys.env.get("DA_EVENTBUS_TOPIC_ARN")
 
   override def handleRequest(event: LambdaDestinationEvent, context: Context): Unit = {
     val logger = context.getLogger
@@ -17,14 +17,14 @@ class Lambda() extends RequestHandler[LambdaDestinationEvent, Unit] {
     val message = event.getResponsePayload.toString
 
     topicOption match {
-      case Some(internalPublishingTopic) =>
-        context.getLogger.log(s"Publishing message to internal publishing topic: $message")
+      case Some(eventbusTopic) =>
+        context.getLogger.log(s"Publishing message to event bus topic: $message")
         val snsClient = SnsClient.builder().region(region).build()
         val request =
-          PublishRequest.builder.message(message).topicArn(internalPublishingTopic).build
+          PublishRequest.builder.message(message).topicArn(eventbusTopic).build
         snsClient.publish(request)
       case None =>
-        context.getLogger.log("No internal publishing topic set")
+        context.getLogger.log("No event bus topic set")
     }
   }
 
