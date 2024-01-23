@@ -1,7 +1,7 @@
-ThisBuild / scalaVersion     := "2.13.11"
+ThisBuild / scalaVersion     := "2.13.12"
 ThisBuild / organization     := "uk.gov.nationalarchives"
 
-val awsVersion = "2.20.79"
+val awsVersion = "2.23.8"
 
 lazy val root = (project in file("."))
   .settings(
@@ -13,7 +13,7 @@ lazy val root = (project in file("."))
       "software.amazon.awssdk" % "sso" % awsVersion,
       "software.amazon.awssdk" % "ssooidc" % awsVersion,
       "org.scalatest" %% "scalatest" % "3.2.17" % Test,
-      "org.scalatestplus" %% "mockito-4-11" % "3.2.16.0" % Test
+      "org.scalatestplus" %% "mockito-4-11" % "3.2.17.0" % Test
     )
   ).settings(
     assembly / assemblyOutputPath := file("target/da-tre-fn-success-destination.jar")
