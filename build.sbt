@@ -12,7 +12,7 @@ lazy val root = (project in file("."))
       "software.amazon.awssdk" % "sns" % awsVersion,
       "software.amazon.awssdk" % "sso" % awsVersion,
       "software.amazon.awssdk" % "ssooidc" % awsVersion,
-      "org.scalatest" %% "scalatest" % "3.2.15" % Test,
+      "org.scalatest" %% "scalatest" % "3.2.17" % Test,
       "org.scalatestplus" %% "mockito-4-11" % "3.2.16.0" % Test
     )
   ).settings(
