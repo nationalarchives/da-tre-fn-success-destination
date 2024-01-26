@@ -4,5 +4,5 @@ WORKDIR /lambda/src/
 RUN sbt assembly
 
 FROM public.ecr.aws/lambda/java:17
-COPY --from=builder /lambda/src/target/function.jar ${LAMBDA_TASK_ROOT}/lib/
+COPY --from=builder /lambda/src/target/da-tre-fn-success-destination.jar ${LAMBDA_TASK_ROOT}/lib/
 CMD ["uk.gov.nationalarchives.tre.Lambda::handleRequest"]
