@@ -10,7 +10,7 @@ import org.mockito.Mockito.when
 
 class LambdaSpec extends AnyFlatSpec with MockitoSugar {
 
-  "The lambda" should "return xxx" in {
+  "The lambda" should "run without throwing exception" in {
     val lambda = new Lambda()
     val event = new util.HashMap[String, AnyRef]();
     event.put("properties", """{
@@ -31,7 +31,7 @@ class LambdaSpec extends AnyFlatSpec with MockitoSugar {
         }""")
     val mockContext = mock[Context]
     when(mockContext.getLogger).thenReturn(new LambdaContextLogger(new StdOutLogSink))
-    val lde = LambdaDestinationEvent.builder().withRequestPayload(event).build()
+    val lde = LambdaDestinationEvent.builder().withResponsePayload(event).build()
     lambda.handleRequest(lde, mockContext)
   }
 }
