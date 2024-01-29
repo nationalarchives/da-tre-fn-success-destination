@@ -3,6 +3,8 @@ package uk.gov.nationalarchives.tre
 import com.amazonaws.services.lambda.runtime.Context
 import com.amazonaws.services.lambda.runtime.api.client.logging.{LambdaContextLogger, StdOutLogSink}
 import com.amazonaws.services.lambda.runtime.events.LambdaDestinationEvent
+import com.amazonaws.services.lambda.runtime.logging.{LogFormat, LogLevel}
+
 import java.util
 import org.scalatest.flatspec._
 import org.scalatestplus.mockito.MockitoSugar
@@ -12,7 +14,7 @@ class LambdaSpec extends AnyFlatSpec with MockitoSugar {
 
   "The lambda" should "run without throwing exception" in {
     val lambda = new Lambda()
-    val event = new util.HashMap[String, AnyRef]();
+    val event = new util.HashMap[String, AnyRef]()
     event.put("properties", """{
             "messageType": "uk.gov.nationalarchives.tre.messages.courtdocumentpackage.available.CourtDocumentPackageAvailable",
             "timestamp": "2023-07-12T12:50:43.578017Z",
@@ -30,7 +32,7 @@ class LambdaSpec extends AnyFlatSpec with MockitoSugar {
             "metadataFileType": "Json"
         }""")
     val mockContext = mock[Context]
-    when(mockContext.getLogger).thenReturn(new LambdaContextLogger(new StdOutLogSink))
+    when(mockContext.getLogger).thenReturn(new LambdaContextLogger(new StdOutLogSink, LogLevel.ERROR,LogFormat.JSON))
     val lde = LambdaDestinationEvent.builder().withResponsePayload(event).build()
     lambda.handleRequest(lde, mockContext)
   }
