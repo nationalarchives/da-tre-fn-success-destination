@@ -13,7 +13,7 @@ lazy val root = (project in file("."))
       "software.amazon.awssdk" % "sso" % awsVersion,
       "software.amazon.awssdk" % "ssooidc" % awsVersion,
       "org.scalatest" %% "scalatest" % "3.2.17" % Test,
-      "org.scalatestplus" %% "mockito-4-11" % "3.2.17.0" % Test
+      "org.scalatestplus" %% "mockito-4-11" % "3.2.18.0" % Test
     )
   ).settings(
     assembly / assemblyOutputPath := file("target/da-tre-fn-success-destination.jar")
