@@ -8,7 +8,7 @@ lazy val root = (project in file("."))
     name := "da-tre-fn-success-destination",
     libraryDependencies ++= Seq(
       "com.amazonaws" % "aws-lambda-java-runtime-interface-client" % "2.8.0",
-      "com.amazonaws" % "aws-lambda-java-events" % "3.15.0",
+      "com.amazonaws" % "aws-lambda-java-events" % "3.16.0",
       "software.amazon.awssdk" % "sns" % awsVersion,
       "software.amazon.awssdk" % "sso" % awsVersion,
       "software.amazon.awssdk" % "ssooidc" % awsVersion,
