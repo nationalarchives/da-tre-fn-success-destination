@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   ecr-deploy:
-    uses: nationalarchives/da-tre-github-actions/.github/workflows/docker-build-and-ecr-deploy-with-wiz-scan.yml@0.0.80
+    uses: nationalarchives/da-tre-github-actions/.github/workflows/docker-build-and-ecr-deploy-with-wiz-scan.yml@e5261245e37488b920d48c7821a83e3030b21db4 # 0.0.80
     with:
       docker_image_name: 'da-tre-fn-success-destination'
       build_dir: '.'
