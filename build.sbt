@@ -1,18 +1,18 @@
 ThisBuild / scalaVersion     := "2.13.18"
 ThisBuild / organization     := "uk.gov.nationalarchives"
 
-val awsVersion = "2.41.34"
+val awsVersion = "2.44.12"
 
 lazy val root = (project in file("."))
   .settings(
     name := "da-tre-fn-success-destination",
     libraryDependencies ++= Seq(
-      "com.amazonaws" % "aws-lambda-java-runtime-interface-client" % "2.9.0",
+      "com.amazonaws" % "aws-lambda-java-runtime-interface-client" % "2.10.1",
       "com.amazonaws" % "aws-lambda-java-events" % "3.16.1",
       "software.amazon.awssdk" % "sns" % awsVersion,
       "software.amazon.awssdk" % "sso" % awsVersion,
       "software.amazon.awssdk" % "ssooidc" % awsVersion,
-      "org.scalatest" %% "scalatest" % "3.2.19" % Test,
+      "org.scalatest" %% "scalatest" % "3.2.20" % Test,
       "org.scalatestplus" %% "mockito-4-11" % "3.2.18.0" % Test
     )
   ).settings(
