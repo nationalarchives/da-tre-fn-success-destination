@@ -1,7 +1,7 @@
 ThisBuild / scalaVersion     := "2.13.18"
 ThisBuild / organization     := "uk.gov.nationalarchives"
 
-val awsVersion = "2.44.14"
+val awsVersion = "2.48.1"
 
 lazy val root = (project in file("."))
   .settings(
