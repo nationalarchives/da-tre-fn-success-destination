@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion     := "2.13.18"
+ThisBuild / scalaVersion     := "3.9.0"
 ThisBuild / organization     := "uk.gov.nationalarchives"
 
 val awsVersion = "2.49.4"
