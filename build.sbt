@@ -19,7 +19,7 @@ lazy val root = (project in file("."))
     assembly / assemblyOutputPath := file("target/da-tre-fn-success-destination.jar")
   )
 
-assemblyMergeStrategy in assembly := {
+assembly / assemblyMergeStrategy := {
   case PathList("META-INF", "MANIFEST.MF") => MergeStrategy.discard
   case _ => MergeStrategy.first
 }
